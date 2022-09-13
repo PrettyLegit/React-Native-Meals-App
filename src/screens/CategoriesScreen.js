@@ -1,11 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
-import { CATEGORIES } from "@src/utils/dummyData";
+import CategoryGridTile from "@src/components/CategoryGridTile";
+import { CATEGORIES } from "@src/utils/dummyData/sampleData";
+import { FlatList, StyleSheet } from "react-native";
+
+function renderCategoryItem(itemData) {
+  return (
+    <CategoryGridTile title={itemData.item.title} color={itemData.item.color} />
+  );
+}
 
 const CategoriesScreen = () => {
   return (
-    <View>
-      <Text>CategoriesScreen</Text>
-    </View>
+    <FlatList
+      data={CATEGORIES}
+      keyExtractor={(item) => item.id}
+      renderItem={renderCategoryItem}
+      numColumns={2}
+    />
   );
 };
 
